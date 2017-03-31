@@ -13,14 +13,44 @@ import java.util.List;
 @Service
 public class SetNameConfigServiceImpl implements ApplicationContextAware{
     private ApplicationContext applicationContext;
-    public <T,S extends FieldSetNameTemplateService>void setName(List<T> list, Class<S> clazz){
-        S bean = applicationContext.getBean(clazz);
-        bean.setName(list);
+
+    /**
+     * 指定类型装配name
+     * @param list
+     * @param clazzs
+     * @param <T>
+     * @param <S>
+     */
+    public <T,S extends FieldSetNameTemplateService>void setName(List<T> list, Class<S> ...clazzs){
+        if(clazzs != null){
+            for (Class<S> clazz : clazzs) {
+                S bean = applicationContext.getBean(clazz);
+                bean.setName(list);
+            }
+        }
     }
-    public <T,S extends FieldSetNameTemplateService>void setName(T t, Class<S> clazz){
-        S bean = applicationContext.getBean(clazz);
-        bean.setName(t);
+
+    /**
+     * 指定装配对象name
+     * @param t
+     * @param clazzs
+     * @param <T>
+     * @param <S>
+     */
+    public <T,S extends FieldSetNameTemplateService>void setName(T t, Class<S> ...clazzs){
+        if(clazzs != null){
+            for (Class<S> clazz : clazzs) {
+                S bean = applicationContext.getBean(clazz);
+                bean.setName(t);
+            }
+        }
     }
+
+    /**
+     * 全部装配对象name
+     * @param t
+     * @param <T>
+     */
     public <T>void setName(T t){
         UserFieldSetNameServiceImpl user = applicationContext.getBean(UserFieldSetNameServiceImpl.class);
         user.setName(t);
