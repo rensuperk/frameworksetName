@@ -1,4 +1,5 @@
  # 项目的目的
+ # [项目地址](https://github.com/rensuperk/frameworksetName)
   ## 实现dto自动根据code值装配value值
    ### 1. 痛点
 为了保证数据的准确性,对象的数据库表没有冗余字段,
